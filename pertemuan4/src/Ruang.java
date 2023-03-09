@@ -1,4 +1,4 @@
-package Pertemuan3; // package name
+package pertemuan4.src;
 
 public class Ruang {
    // deklarasi variabel

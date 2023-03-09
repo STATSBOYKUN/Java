@@ -1,6 +1,6 @@
-package Pertemuan3; // package name
+package pertemuan4.src;
 
-import java.util.List; // library untuk List
+import java.util.List;
 
 public class UnitKerja {
    // deklarasi variabel
