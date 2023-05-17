@@ -4,6 +4,7 @@
  */
 package databasemhs;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -19,6 +20,7 @@ public class EntryPanel extends javax.swing.JPanel {
      */
     public EntryPanel() {
         initComponents();
+        loadTableData();
     }
 
     /**
@@ -41,7 +43,7 @@ public class EntryPanel extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         berenangCheckBox = new javax.swing.JCheckBox();
         nimTextField = new javax.swing.JTextField();
-        saveButton = new javax.swing.JButton();
+        simpanButton = new javax.swing.JButton();
         namaTextField = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         maleRadioButton = new javax.swing.JRadioButton();
@@ -60,11 +62,6 @@ public class EntryPanel extends javax.swing.JPanel {
         jLabel10.setText("Umur :");
 
         provinsiComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aceh", "Sumatra Utara", "Sumatra Barat", "Riau", "Jambi", "Sumatra Selatan", "Bengkulu", "Lampung", "Kepulauan Bangka Belitung", "Kepulauan Riau", "Daerah Khusus Ibukota Jakarta", "Jawa Barat", "Jawa Tengah", "Daerah Istimewa Yogyakarta", "Jawa Timur", "Banten", "Bali", "Nusa Tenggara Barat", "Nusa Tenggara Timur", "Kalimantan Barat", "Kalimantan Tengah", "Kalimantan Selatan", "Kalimantan Timur", "Kalimantan Utara", "Sulawesi Utara", "Sulawesi Tengah", "Sulawesi Selatan", "Sulawesi Tenggara", "Gorontalo", "Sulawesi Barat", "Maluku", "Maluku Utara", "Papua", "Papua Barat", "Papua Selatan", "Papua Tengah", "Papua Pegunungan", "Papua Barat Daya" }));
-        provinsiComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                provinsiComboBoxActionPerformed(evt);
-            }
-        });
 
         jLabel11.setText("Alamat :");
 
@@ -78,10 +75,10 @@ public class EntryPanel extends javax.swing.JPanel {
 
         berenangCheckBox.setText("Berenang");
 
-        saveButton.setText("Simpan");
-        saveButton.addActionListener(new java.awt.event.ActionListener() {
+        simpanButton.setText("Simpan");
+        simpanButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveButtonActionPerformed(evt);
+                simpanButtonActionPerformed(evt);
             }
         });
 
@@ -132,7 +129,7 @@ public class EntryPanel extends javax.swing.JPanel {
                     .addComponent(provinsiComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(membacaCheckBox)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(saveButton)
+                        .addComponent(simpanButton)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(femaleRadioButton)
                             .addComponent(nimTextField)
@@ -184,7 +181,7 @@ public class EntryPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(berenangCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(saveButton)
+                .addComponent(simpanButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -240,7 +237,7 @@ public class EntryPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+    private void simpanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanButtonActionPerformed
         // TODO add your handling code here:
         Mahasiswa mhs = new Mahasiswa();
 
@@ -278,11 +275,11 @@ public class EntryPanel extends javax.swing.JPanel {
 
         mhs.setHobi(hobiList);
         Database.getInstance().insertMahasiswa(mhs);
-        clearForm();
-
+        
         JOptionPane.showMessageDialog(this, "Sukses Tersimpan");
         loadTableData();
-    }//GEN-LAST:event_saveButtonActionPerformed
+        clearForm();
+    }//GEN-LAST:event_simpanButtonActionPerformed
     
     private void loadTableData(){
         DefaultTableModel dtm = (DefaultTableModel)mahasiswaTable.getModel();
@@ -324,10 +321,6 @@ public class EntryPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_femaleRadioButtonActionPerformed
 
-    private void provinsiComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_provinsiComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_provinsiComboBoxActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea alamatTextArea;
@@ -352,7 +345,7 @@ public class EntryPanel extends javax.swing.JPanel {
     private javax.swing.JTextField namaTextField;
     private javax.swing.JTextField nimTextField;
     private javax.swing.JComboBox<String> provinsiComboBox;
-    private javax.swing.JButton saveButton;
+    private javax.swing.JButton simpanButton;
     private javax.swing.JSpinner umurSpinner;
     // End of variables declaration//GEN-END:variables
 }
